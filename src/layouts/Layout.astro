@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Obsy Launcher — Сверхбыстрый, легкий и современный лаунчер",
+  description = "Новое поколение лаунчера с многопоточной загрузкой, изоляцией сборок, поддержкой модов и минимальным потреблением ресурсов.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0a0a0a" />
+  </head>
+  <body
+    class="text-foreground relative min-h-screen bg-[#0a0a0a] antialiased selection:bg-white/20 selection:text-white"
+  >
+    <div class="relative z-10 flex min-h-screen flex-col bg-[#0a0a0a]">
+      <slot />
+    </div>
+  </body>
+</html>

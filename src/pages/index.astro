@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import Hero from "../components/Hero.astro";
+import { LauncherShowcase } from "../components/LauncherShowcase";
+import BentoGrid from "../components/BentoGrid.astro";
+import Comparison from "../components/Comparison.astro";
+import { DownloadMatrix } from "../components/DownloadMatrix";
+import { FaqAccordion } from "../components/FaqAccordion";
+import Footer from "../components/Footer.astro";
+import { fetchLatestRelease } from "../lib/github";
+
+const release = await fetchLatestRelease();
+---
+
+<Layout
+  title="Obsy Launcher — Легкий и быстрый Minecraft-лаунчер на Rust"
+  description="Опенсорсный лаунчер с многопоточной загрузкой, изолированными профилями, менеджером Java и оптимизацией Aikar's GC."
+>
+  <!-- Navigation Header -->
+  <Navbar client:load />
+
+  <!-- Main Content Flow -->
+  <main class="flex-grow">
+    <Hero release={release} />
+    <LauncherShowcase client:visible />
+    <BentoGrid />
+    <Comparison />
+    <DownloadMatrix client:visible initialRelease={release} />
+    <FaqAccordion client:visible />
+  </main>
+
+  <!-- Footer -->
+  <Footer release={release} />
+</Layout>

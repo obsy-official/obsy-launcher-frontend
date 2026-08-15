@@ -1,0 +1,174 @@
+---
+import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
+---
+
+<section id="features" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="mx-auto mb-16 max-w-3xl text-center">
+      <div
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-slate-300"
+      >
+        <span>Архитектурные особенности</span>
+      </div>
+      <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Разработан для <span class="text-gradient">стабильности и скорости</span>
+      </h2>
+      <p class="mt-4 text-base text-slate-300 sm:text-lg">
+        Нативный стек на Rust обеспечивает мгновенный отклик и чистую структуру файлов.
+      </p>
+    </div>
+
+    {/* Bento Grid */}
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+      {/* Card 1: Multi-threaded Downloader (Col 8) */}
+      <div
+        class="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-8"
+      >
+        <div>
+          <div class="mb-4 flex items-center justify-between">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+            >
+              <Zap className="h-6 w-6" />
+            </div>
+            <span
+              class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-semibold text-emerald-400"
+            >
+              Асинхронный I/O
+            </span>
+          </div>
+
+          <h3 class="mb-2 text-2xl font-bold text-white">Параллельный загрузчик ассетов</h3>
+          <p class="max-w-xl text-sm text-slate-300">
+            Многопоточный пайплайн скачивания библиотек и ассетов игры. Автоматическое возобновление
+            при обрыве соединения и предварительная сверка контрольных сумм SHA-1.
+          </p>
+        </div>
+
+        <div
+          class="mt-6 flex flex-wrap items-center gap-3 border-t border-white/10 pt-4 font-mono text-xs text-slate-400"
+        >
+          <div class="flex items-center gap-1.5">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            <span>До 50 параллельных потоков HTTP/2</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+            <span>Локальный кэш манифестов версий</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 2: Isolated Profiles / Sandbox (Col 4) */}
+      <div
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+      >
+        <div>
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+          >
+            <Layers className="h-6 w-6" />
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-white">Изоляция инстансов</h3>
+          <p class="text-sm text-slate-300">
+            Каждая сборка создается в отдельной директории. Миры, скриншоты, моды и конфиги не
+            конфликтуют между версиями.
+          </p>
+        </div>
+
+        <div
+          class="mt-6 space-y-1.5 rounded-2xl border border-white/10 bg-black/40 p-3 font-mono text-xs text-slate-400"
+        >
+          <div class="flex items-center gap-2 text-emerald-400">
+            <div class="h-1.5 w-1.5 rounded-full bg-emerald-400"></div> /instances/fabric-1.21/
+          </div>
+          <div class="flex items-center gap-2 text-slate-300">
+            <div class="h-1.5 w-1.5 rounded-full bg-white"></div> /instances/neoforge-1.20/
+          </div>
+          <div class="flex items-center gap-2 text-slate-400">
+            <div class="h-1.5 w-1.5 rounded-full bg-slate-500"></div> /instances/vanilla/
+          </div>
+        </div>
+      </div>
+
+      {/* Card 3: Java Manager (Col 4) */}
+      <div
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+      >
+        <div>
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+          >
+            <Cpu className="h-6 w-6" />
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-white">Менеджер версий Java</h3>
+          <p class="text-sm text-slate-300">
+            Автоматическое скачивание и изоляция протестированных сборок Eclipse Temurin под
+            конкретную версию Minecraft.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-2 font-mono text-xs">
+          <span class="rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-white"
+            >Java 21</span
+          >
+          <span class="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-slate-300"
+            >Java 17</span
+          >
+          <span class="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-slate-300"
+            >Java 8</span
+          >
+        </div>
+      </div>
+
+      {/* Card 4: Modpacks 1-Click Sync (Col 4) */}
+      <div
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+      >
+        <div>
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+          >
+            <PackageCheck className="h-6 w-6" />
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-white">Каталог модов</h3>
+          <p class="text-sm text-slate-300">
+            Прямой поиск и установка модов и ресурс-паков из каталогов Modrinth и CurseForge без
+            сторонних утилит.
+          </p>
+        </div>
+
+        <div
+          class="mt-6 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs text-slate-400"
+        >
+          <span>Modrinth & CurseForge API</span>
+          <span class="font-semibold text-slate-200">Прямая интеграция</span>
+        </div>
+      </div>
+
+      {/* Card 5: Zero-Bloat & Privacy (Col 4) */}
+      <div
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+      >
+        <div>
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+          >
+            <ShieldCheck className="h-6 w-6" />
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-white">Чистый исходный код</h3>
+          <p class="text-sm text-slate-300">
+            Никакой рекламы, сторонних трекеров и навязчивых баннеров. Полная прозрачность и
+            открытая лицензия MIT.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-2 font-mono text-xs text-slate-400">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+          <span>Потребление памяти процесса ~40 МБ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
