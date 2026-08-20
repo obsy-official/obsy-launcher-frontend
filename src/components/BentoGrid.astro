@@ -1,5 +1,14 @@
 ---
-import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
+import {
+  Zap,
+  Layers,
+  Cpu,
+  PackageCheck,
+  ShieldCheck,
+  Puzzle,
+  Sparkles,
+  SlidersHorizontal,
+} from "lucide-react";
 ---
 
 <section id="features" class="relative py-20 md:py-28">
@@ -12,10 +21,11 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
         <span>Архитектурные особенности</span>
       </div>
       <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-        Разработан для <span class="text-gradient">стабильности и скорости</span>
+        Разработан для <span class="text-gradient">стабильности, скорости и кастомизации</span>
       </h2>
       <p class="mt-4 text-base text-slate-300 sm:text-lg">
-        Нативный стек на Rust обеспечивает мгновенный отклик и чистую структуру файлов.
+        Нативный стек на Rust в связке с расширяемой модульной системой аддонов для полного контроля
+        над лаунчером.
       </p>
     </div>
 
@@ -92,7 +102,51 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
         </div>
       </div>
 
-      {/* Card 3: Java Manager (Col 4) */}
+      {/* Card 3: Modular Addon Architecture (Col 8) */}
+      <div
+        class="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-8"
+      >
+        <div>
+          <div class="mb-4 flex items-center justify-between">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-lg"
+            >
+              <Puzzle className="h-6 w-6" />
+            </div>
+            <span
+              class="rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 font-mono text-xs font-semibold text-purple-300"
+            >
+              Addon Engine & API
+            </span>
+          </div>
+
+          <h3 class="mb-2 text-2xl font-bold text-white">Модульность и экосистема аддонов</h3>
+          <p class="max-w-xl text-sm text-slate-300">
+            Встраивайте собственные React-виджеты в интерфейс лаунчера, добавляйте интеграции
+            (Discord RPC, 3D Skin Viewer, мониторинг серверов) и управляйте жизненным циклом запуска
+            через безопасный Addon API.
+          </p>
+        </div>
+
+        <div
+          class="mt-6 flex flex-wrap items-center gap-4 border-t border-white/10 pt-4 font-mono text-xs text-slate-400 sm:gap-6"
+        >
+          <div class="flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5 text-purple-400" />
+            <span>Слоты интерфейса</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <SlidersHorizontal className="h-3.5 w-3.5 text-emerald-400" />
+            <span>Хуки запуска</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <ShieldCheck className="h-3.5 w-3.5 text-blue-400" />
+            <span>Изоляция прав</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 4: Java Manager (Col 4) */}
       <div
         class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
       >
@@ -122,9 +176,9 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
         </div>
       </div>
 
-      {/* Card 4: Modpacks 1-Click Sync (Col 4) */}
+      {/* Card 5: Modpacks 1-Click Sync (Col 6) */}
       <div
-        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-6"
       >
         <div>
           <div
@@ -132,10 +186,10 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
           >
             <PackageCheck className="h-6 w-6" />
           </div>
-          <h3 class="mb-2 text-xl font-bold text-white">Каталог модов</h3>
+          <h3 class="mb-2 text-xl font-bold text-white">Каталог модов и ресурс-паков</h3>
           <p class="text-sm text-slate-300">
             Прямой поиск и установка модов и ресурс-паков из каталогов Modrinth и CurseForge без
-            сторонних утилит.
+            сторонних утилит и ручного перетаскивания файлов.
           </p>
         </div>
 
@@ -147,9 +201,9 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
         </div>
       </div>
 
-      {/* Card 5: Zero-Bloat & Privacy (Col 4) */}
+      {/* Card 6: Zero-Bloat & Privacy (Col 6) */}
       <div
-        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-4"
+        class="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.02] p-7 backdrop-blur-md transition-colors hover:border-white/20 md:col-span-6"
       >
         <div>
           <div
@@ -157,16 +211,18 @@ import { Zap, Layers, Cpu, PackageCheck, ShieldCheck } from "lucide-react";
           >
             <ShieldCheck className="h-6 w-6" />
           </div>
-          <h3 class="mb-2 text-xl font-bold text-white">Чистый исходный код</h3>
+          <h3 class="mb-2 text-xl font-bold text-white">Чистый исходный код и приватность</h3>
           <p class="text-sm text-slate-300">
-            Никакой рекламы, сторонних трекеров и навязчивых баннеров. Полная прозрачность и
-            открытая лицензия MIT.
+            Никакой рекламы, сторонних трекеров и навязчивых баннеров. Полная прозрачность, открытая
+            лицензия MIT и минимальное потребление ресурсов.
           </p>
         </div>
 
-        <div class="mt-6 flex items-center gap-2 font-mono text-xs text-slate-400">
+        <div
+          class="mt-6 flex items-center gap-2 border-t border-white/10 pt-4 font-mono text-xs text-slate-400"
+        >
           <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-          <span>Потребление памяти процесса ~40 МБ</span>
+          <span>Потребление памяти процесса ~40 МБ • Лицензия MIT</span>
         </div>
       </div>
     </div>

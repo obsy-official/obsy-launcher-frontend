@@ -1,8 +1,18 @@
-import { CheckCircle2, Cpu, Download, Folder, Layers, Shirt, Sliders } from "lucide-react";
+import {
+  CheckCircle2,
+  Cpu,
+  Download,
+  Layers,
+  Puzzle,
+  Shirt,
+  Sliders,
+  Sparkles,
+  Shield,
+} from "lucide-react";
 import React, { useState } from "react";
 
 interface TabItem {
-  id: "instances" | "jvm" | "mods" | "wardrobe";
+  id: "instances" | "addons" | "jvm" | "mods" | "wardrobe";
   label: string;
   icon: React.ReactNode;
   title: string;
@@ -17,6 +27,14 @@ const tabs: TabItem[] = [
     title: "Полная изоляция каждого инстанса",
     description:
       "Каждая версия игры создается в собственной изолированной директории. Конфигурации, моды, миры и скриншоты никогда не перемешиваются между сборками.",
+  },
+  {
+    id: "addons",
+    label: "Модули и аддоны",
+    icon: <Puzzle className="h-4 w-4" />,
+    title: "Расширяемая экосистема аддонов",
+    description:
+      "Подключайте готовые модули или создавайте собственные: интерактивный 3D-просмотр скинов, Discord Rich Presence, кастомные темы и виджеты через гибкую систему UI-слотов и хуков.",
   },
   {
     id: "jvm",
@@ -49,19 +67,19 @@ export const LauncherShowcase: React.FC = () => {
   const current = tabs.find((t) => t.id === activeTab) || tabs[0];
 
   return (
-    <section className="relative py-16 md:py-24">
+    <section id="showcase" className="relative py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="text-2xl font-bold tracking-tight text-white sm:text-4xl">
             Интерфейс и <span className="text-gradient">возможности лаунчера</span>
           </h2>
           <p className="mt-3 text-sm text-slate-300 sm:text-base">
-            Продуманная архитектура для быстрой настройки и стабильной игры.
+            Продуманная архитектура для быстрой настройки, кастомизации и стабильной игры.
           </p>
         </div>
 
         {/* Tab Selector */}
-        <div className="mx-auto mb-8 flex max-w-3xl flex-wrap items-center justify-center gap-2">
+        <div className="mx-auto mb-8 flex max-w-4xl flex-wrap items-center justify-center gap-2">
           {tabs.map((tab) => {
             const isActive = tab.id === activeTab;
             return (
@@ -105,6 +123,22 @@ export const LauncherShowcase: React.FC = () => {
                     </div>
                   </>
                 )}
+                {activeTab === "addons" && (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      <span>Динамические слоты UI: Header, Dashboard, Settings, Controls</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      <span>Гранулярная система разрешений (Permissions) и изоляция</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      <span>Хуки запуска (onBeforeLaunch), события и локальное хранилище</span>
+                    </div>
+                  </>
+                )}
                 {activeTab === "jvm" && (
                   <>
                     <div className="flex items-center gap-2">
@@ -121,11 +155,11 @@ export const LauncherShowcase: React.FC = () => {
                   <>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      <span>Авто-проверка хешей ассетов перед скачиванием</span>
+                      <span>Прямой поиск модов по Modrinth & CurseForge API</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      <span>Параллельные HTTP/2 воркеры для мгновенной загрузки</span>
+                      <span>Автоматическое разрешение зависимостей модов</span>
                     </div>
                   </>
                 )}
@@ -133,55 +167,55 @@ export const LauncherShowcase: React.FC = () => {
                   <>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      <span>Безопасный OAuth2: токены шифруются локально</span>
+                      <span>Асинхронная валидация сессий Microsoft Xbox Live</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      <span>Локальные профили для игры без интернета и на локальных серверах</span>
+                      <span>Поддержка скинов Classic (Steve) и Slim (Alex)</span>
                     </div>
                   </>
                 )}
               </div>
             </div>
 
-            {/* Right: Authentic Interactive UI Replica */}
-            <div className="rounded-xl border border-white/10 bg-[#0d0d0f] p-5 lg:col-span-7">
+            {/* Right: Interactive Mock Screen */}
+            <div className="rounded-xl border border-white/10 bg-black/60 p-4 shadow-inner backdrop-blur-md lg:col-span-7">
               {activeTab === "instances" && (
                 <div className="space-y-3 font-mono text-xs">
                   <div className="flex items-center justify-between border-b border-white/10 pb-3 text-slate-400">
                     <span className="flex items-center gap-2 text-white">
-                      <Folder className="h-4 w-4 text-amber-400" /> Установленные инстансы
+                      <Layers className="h-4 w-4 text-emerald-400" /> Установленные инстансы
                     </span>
                     <span className="rounded bg-white/10 px-2 py-0.5 text-[10px]">
-                      .obsy/instances
+                      3 профиля активно
                     </span>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-white">
+                    <div className="flex items-center justify-between rounded-lg border border-white/20 bg-white/10 p-3 text-white">
                       <div className="flex items-center gap-3">
-                        <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
-                          FABRIC
+                        <span className="rounded bg-emerald-500/20 px-2 py-1 text-[10px] font-bold text-emerald-400">
+                          Fabric
                         </span>
                         <div>
-                          <div className="font-sans font-semibold">1.21.4 (Sodium + Iris)</div>
+                          <div className="font-sans font-semibold">1.21.1 OptiFabric</div>
                           <div className="text-[11px] text-slate-400">
-                            Java 21 • 32 мода • Папка: /instances/fabric-1.21.4
+                            Java 21 • 24 мода • Папка: /instances/fabric-1.21.1
                           </div>
                         </div>
                       </div>
-                      <span className="text-[11px] font-semibold text-emerald-400">Активен</span>
+                      <span className="text-[11px] font-semibold text-emerald-400">Выбран</span>
                     </div>
 
                     <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.02] p-3 text-slate-300">
                       <div className="flex items-center gap-3">
-                        <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400">
-                          NEOFORGE
+                        <span className="rounded bg-blue-500/20 px-2 py-1 text-[10px] font-bold text-blue-400">
+                          NeoForge
                         </span>
                         <div>
-                          <div className="font-sans font-semibold">1.20.4 (Create World)</div>
+                          <div className="font-sans font-semibold">1.20.4 Technical</div>
                           <div className="text-[11px] text-slate-400">
-                            Java 17 • 84 мода • Папка: /instances/neoforge-create
+                            Java 17 • 42 мода • Папка: /instances/neoforge-1.20.4
                           </div>
                         </div>
                       </div>
@@ -190,8 +224,8 @@ export const LauncherShowcase: React.FC = () => {
 
                     <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.02] p-3 text-slate-300">
                       <div className="flex items-center gap-3">
-                        <span className="rounded bg-blue-500/20 px-2 py-0.5 text-[10px] font-bold text-blue-400">
-                          VANILLA
+                        <span className="rounded bg-slate-500/20 px-2 py-1 text-[10px] font-bold text-slate-400">
+                          Vanilla
                         </span>
                         <div>
                           <div className="font-sans font-semibold">1.21.4 Release</div>
@@ -202,6 +236,101 @@ export const LauncherShowcase: React.FC = () => {
                       </div>
                       <span className="text-[11px] text-slate-500">Готов к запуску</span>
                     </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "addons" && (
+                <div className="space-y-3 font-mono text-xs">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 text-slate-400">
+                    <span className="flex items-center gap-2 text-white">
+                      <Puzzle className="h-4 w-4 text-emerald-400" /> Менеджер аддонов (Addon
+                      Engine)
+                    </span>
+                    <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                      5 активных аддонов
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    {/* Addon 1 */}
+                    <div className="flex items-center justify-between rounded-lg border border-white/20 bg-white/10 p-3 text-white">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-300">
+                          <Sparkles className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 font-sans font-semibold">
+                            <span>3D Skin Viewer</span>
+                            <span className="py-0.2 rounded bg-white/10 px-1.5 font-mono text-[9px] text-slate-300">
+                              v1.2.0
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-400">
+                            Three.js интерактивный просмотр • Слот: dashboard.side
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+                          Активен
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Addon 2 */}
+                    <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.02] p-3 text-white">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20 text-blue-300">
+                          <Shield className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 font-sans font-semibold">
+                            <span>Discord Rich Presence</span>
+                            <span className="py-0.2 rounded bg-white/10 px-1.5 font-mono text-[9px] text-slate-300">
+                              v1.0.4
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-400">
+                            Статус игры и сервера в профиле • Хук: onBeforeLaunch
+                          </div>
+                        </div>
+                      </div>
+                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+                        Активен
+                      </span>
+                    </div>
+
+                    {/* Addon 3 */}
+                    <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.02] p-3 text-white">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/20 text-purple-300">
+                          <Puzzle className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 font-sans font-semibold">
+                            <span>Modrinth Quick Browser</span>
+                            <span className="py-0.2 rounded bg-white/10 px-1.5 font-mono text-[9px] text-slate-300">
+                              v2.1.0
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-400">
+                            Каталог модов прямо в дашборде • Слот: dashboard.widgets
+                          </div>
+                        </div>
+                      </div>
+                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+                        Активен
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
+                      <span>Быстрая установка zip-пакетов и управление на лету</span>
+                    </span>
+                    <span className="font-mono text-slate-400">Без перезапуска лаунчера</span>
                   </div>
                 </div>
               )}
@@ -260,7 +389,7 @@ export const LauncherShowcase: React.FC = () => {
                         </div>
                       </div>
                       <span className="rounded bg-emerald-500/20 px-2 py-1 text-[10px] font-bold text-emerald-400">
-                        УСТАНОВЛЕН
+                        Установлен
                       </span>
                     </div>
 
@@ -272,7 +401,7 @@ export const LauncherShowcase: React.FC = () => {
                         </div>
                       </div>
                       <span className="rounded bg-emerald-500/20 px-2 py-1 text-[10px] font-bold text-emerald-400">
-                        УСТАНОВЛЕН
+                        Установлен
                       </span>
                     </div>
 
@@ -284,7 +413,7 @@ export const LauncherShowcase: React.FC = () => {
                         </div>
                       </div>
                       <span className="rounded bg-emerald-500/20 px-2 py-1 text-[10px] font-bold text-emerald-400">
-                        УСТАНОВЛЕН
+                        Установлен
                       </span>
                     </div>
                   </div>

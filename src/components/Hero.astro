@@ -1,6 +1,6 @@
 ---
 import { DownloadDropdown } from "./DownloadDropdown";
-import { Cpu, ShieldCheck, Zap } from "lucide-react";
+import { Cpu, ShieldCheck, Zap, Puzzle } from "lucide-react";
 import type { GitHubRelease } from "@/lib/github";
 
 interface Props {
@@ -36,15 +36,15 @@ const releaseBadgeText = release?.tag_name
     <h1
       class="mx-auto max-w-4xl text-4xl leading-[1.1] font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl"
     >
-      Легкий и быстрый Minecraft-лаунчер на <span class="text-gradient">Rust</span>
+      Быстрый, легкий и модульный лаунчер на <span class="text-gradient">Rust</span>
     </h1>
 
     <!-- Subtitle -->
     <p
       class="mx-auto mt-6 max-w-2xl text-base leading-relaxed font-normal text-slate-300 sm:text-lg lg:text-xl"
     >
-      Многопоточный асинхронный загрузчик ассетов, изоляция сборок по папкам, автоматический подбор
-      Java и встроенная оптимизация Aikar's GC.
+      Многопоточный асинхронный загрузчик ассетов, изолированные инстансы, расширяемая модульная
+      система аддонов и автоматическая оптимизация Aikar's GC.
     </p>
 
     <!-- Download Dropdown Component -->
@@ -56,6 +56,9 @@ const releaseBadgeText = release?.tag_name
       >
         <span class="flex items-center gap-1.5">
           <Zap className="h-3.5 w-3.5 text-emerald-400" /> ~40 МБ потребление ОЗУ
+        </span>
+        <span class="flex items-center gap-1.5">
+          <Puzzle className="h-3.5 w-3.5 text-purple-400" /> Модульный Addon API
         </span>
         <span class="flex items-center gap-1.5">
           <Cpu className="h-3.5 w-3.5 text-slate-300" /> Авто-Java 8 / 17 / 21
