@@ -1,6 +1,7 @@
 ---
 import { MessageSquare } from "lucide-react";
 import { GITHUB_REPO_URL } from "@/lib/github";
+import { FooterReleaseLabel } from "./FooterReleaseLabel";
 import type { GitHubRelease } from "@/lib/github";
 
 interface Props {
@@ -8,9 +9,6 @@ interface Props {
 }
 
 const { release = null } = Astro.props;
-const releaseLabel = release?.tag_name
-  ? `Сборка: ${release.tag_name} стабильная`
-  : "Сборка: последний стабильный релиз";
 ---
 
 <footer
@@ -98,7 +96,7 @@ const releaseLabel = release?.tag_name
         <div class="mb-4 font-mono text-xs font-semibold text-slate-300">Лицензия и сборка</div>
         <ul class="space-y-2.5 text-xs text-slate-400">
           <li>Лицензия MIT (открытый код)</li>
-          <li>{releaseLabel}</li>
+          <li><FooterReleaseLabel client:load initialRelease={release} /></li>
           <li>
             <a
               href={GITHUB_REPO_URL}
